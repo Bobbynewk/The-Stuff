@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reflex Test</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: sans-serif;
+      background-color: #111;
+      color: white;
+    }
+
+    #button {
+      padding: 40px 80px;
+      font-size: 24px;
+      background-color: red;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="button">Wait for Green...</button>
+  <div id="result"></div>
+
+  <script>
+    const button = document.getElementById("button");
+    const result = document.getElementById("result");
+
+    let canClick = false;
+    let startTime, endTime;
+
+    function turnGreen() {
+      button.style.backgroundColor = "green";
+      button.textContent = "CLICK!";
+      startTime = new Date().getTime();
+      canClick = true;
+    }
+
+    function startTest() {
+      result.textContent = "";
+      button.style.backgroundColor = "red";
+      button.textContent = "Wait for Green...";
+      canClick = false;
+
+      const delay = Math.floor(Math.random() * 3000) + 2000;
+      setTimeout(turnGreen, delay);
+    }
+
+    button.addEventListener("click", () => {
+      if (!canClick) {
+        result.textContent = "Too soon! Try again.";
+        startTest();
+      } else {
+        endTime = new Date().getTime();
+        const reactionTime = endTime - startTime;
+        result.textContent = `Your reaction time: ${reactionTime} ms`;
+        startTest();
+      }
+    });
+
+    // Start the first test
+    startTest();
+  </script>
+
+</body>
+</html>
