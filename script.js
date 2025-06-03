@@ -5,12 +5,12 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let isBlack = false;
+let isRed = false;
 
 // Flash the canvas black and white
 setInterval(() => {
-  ctx.fillStyle = isBlack ? 'white' : 'black';
+  ctx.fillStyle = isRed ? 'blue' : 'red';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  isBlack = !isBlack;
+  isRed = !isRed;
 }, 500); // Adjust interval (ms) as needed
 
