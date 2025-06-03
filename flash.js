@@ -1,21 +1,27 @@
 const canvas = document.getElementById('flashCanvas');
 const ctx = canvas.getContext('2d');
 
-// Resize canvas to full screen
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
+// Make canvas fill the screen
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-// Mouse tracking
-let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
-document.addEventListener('mousemove', e => {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
-});
+// Fill black screen
+ctx.fillStyle = 'black';
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-// Load images
-const ratImg = new Image();
-ratImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Black_rat_%28Rattus_rattus%29.jpg/120px-Black_rat_%28Rattus_rattus%
+// Load scary image (jump scare)
+const scareImg = new Image();
+scareImg.src = 'https://i.imgur.com/ZX9Q4NE.png'; // Replace with any scary face image
+
+// Wait 3 seconds, then show jumpscare
+setTimeout(() => {
+  // Flash white background fast for shock
+  ctx.fillStyle = 'white';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Play scary sound (optional)
+  const scream = new Audio('https://www.myinstants.com/media/sounds/movie_1.mp3'); // Optional scream sound
+  scream.play();
+
+  // Draw scary face
+  scareImg.onload
