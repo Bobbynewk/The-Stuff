@@ -20,3 +20,4 @@ start speech.vbs
 echo lol just kidding it was a prank
 start explorer.exe
 pause
+// download load this script then run the .bat file
